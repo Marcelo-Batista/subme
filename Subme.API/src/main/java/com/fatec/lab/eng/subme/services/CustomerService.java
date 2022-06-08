@@ -61,7 +61,7 @@ public class CustomerService {
         customerRepository.save(customerEntity);
         //PlanEntity planEntity = planRepository.findByName(subscriptionDTO.getPlan().getName());
         PlanEntity planEntity = planRepository.findById(subscriptionDTO.getPlan().getId()).get();
-        return ResponseEntity.ok().body(subscriptionService.create(customerEntity, planEntity, 1));
+        return ResponseEntity.ok().body(subscriptionService.create(customerEntity, planEntity, 0));
     }
 
     public ResponseEntity<List<CustomerDTO>> filteredList(List<String> param, Long companyId){

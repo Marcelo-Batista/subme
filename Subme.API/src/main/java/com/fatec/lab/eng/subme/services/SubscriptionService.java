@@ -109,11 +109,11 @@ public class SubscriptionService {
                     return ResponseEntity.ok().body(toList(filteredListSubscriptionByPlan));
                 case "status":
                     int status;
-                    if ("active".contains(value) || Long.parseLong(value) == 1){
+                    if ("ativo".contains(value) || Long.parseLong(value) == 0){
                         status = SubscriptionStatus.ACTIVE.value;
-                    } else if("suspended".contains(value) || Long.parseLong(value) == 2){
+                    } else if("suspenso".contains(value) || Long.parseLong(value) == 1){
                         status = SubscriptionStatus.SUSPENDED.value;
-                    } else if ("canceled".contains(value) || Long.parseLong(value) == 3){
+                    } else if ("cancelado".contains(value) || Long.parseLong(value) == 2){
                         status = SubscriptionStatus.CANCELED.value;
                     } else {
                         return null;
