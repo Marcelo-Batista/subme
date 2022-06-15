@@ -104,7 +104,7 @@ public class CustomerService {
     public List<CustomerDTO> toList(Long companyId){
         List<CustomerDTO> customerDTOS = new ArrayList<>();
         for (CustomerEntity entity : customerRepository.findAllByCompanyId(companyId)){
-            customerDTOS.add(ModelToDTO.customerFactory(entity));
+            if (entity.isStatus()) customerDTOS.add(ModelToDTO.customerFactory(entity));
         }
         return customerDTOS;
     }
