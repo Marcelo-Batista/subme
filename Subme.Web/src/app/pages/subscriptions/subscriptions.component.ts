@@ -9,6 +9,7 @@ import { TableMenuOptions } from 'src/app/shared/components/table/classes/table-
 import { Subscription } from 'src/app/shared/entities/subscription.entity';
 import { SubscriptionService } from 'src/app/shared/services/subscription.service';
 import { SubscriptionsFormComponent } from './subscriptions-form/subscriptions-form.component';
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-subscriptions',
@@ -93,6 +94,29 @@ export class SubscriptionsComponent implements OnInit {
       deleteAction: (id) => this.deleteSubscriptionAsync(id),
       editAction: (id) => this.goToSubscriptionsForm(id),
     };
+  }
+
+  generatePDF(): void {
+    const doc = new jsPDF.jsPDF();
+    doc.setFont("Courier");
+    doc.setFontSize(14);
+    doc.text("Relatório de assinaturas", 65, 15);
+    let line = 0
+    this.tableData.forEach(x => {
+      doc.setTextColor(0, 0, 0);
+      doc.text("ID", 12, line+25);
+      doc.text("CLiente", 12, line+33);
+      doc.text("Plano", 12, line+41);
+      doc.text("Status", 12, line+49);
+      doc.setTextColor(68, 68, 68);
+      doc.text(x.id.toString(), 60, line+25);
+      doc.text(x.customer, 60, line+33);
+      doc.text(x.plan, 60, line+41);
+      doc.text(x.status, 60, line+49);
+      line+=35
+    })
+
+    doc.output("dataurlnewwindow");
   }
 
   async deleteSubscriptionAsync(id: number): Promise<void> {

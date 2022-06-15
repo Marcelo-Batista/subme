@@ -37,7 +37,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ConfirmDialogModule,
     SearchInputModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
   ]
 })
 export class SubscriptionsModule { }
